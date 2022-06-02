@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -9,15 +9,14 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  uname=""
-  acno=""
-  pswd=""
-
+ 
   //form group
   registerForm = this.fb.group({
-    acno:'',
-    pswd:'',
-    uname:''
+    
+    acno:[''],
+    pswd:[''],
+    uname:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]]
+
   })
 
   constructor(private ds:DataService,private router:Router,private fb:FormBuilder) { }
@@ -26,20 +25,33 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    var uname = this.uname
-    var acno = this.acno
-    var pswd = this.pswd
+    
+    var uname = this.registerForm.value.uname
+    var acno = this.registerForm.value.acno
+    var pswd = this.registerForm.value.pswd
 
-   const result = this.ds.register(uname,acno,pswd)
+    if(this.registerForm.get('uname')?.errors){
+      alert("Invalid Username")
+    }
+    
 
-   if(result){
-     alert("Successfully registered")
-  this.router.navigateByUrl("")
-   }
-   else{
-    alert("Already Existing customer... Please Log In!!!!")
- 
-   }
+     if(this.registerForm.valid){
+      const result = this.ds.register(uname,acno,pswd)
+
+      if(result){
+        alert("Successfully registered")
+     this.router.navigateByUrl("")
+      }
+      else{
+       alert("Already Existing customer... Please Log In!!!!")
+      }
+    }
+
+    else{
+      alert("Invalid Form")
+    }
+
+   
   }
 
 }

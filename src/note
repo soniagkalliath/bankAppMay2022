@@ -4,7 +4,7 @@
                             Angular - Front End Development
 
 
-                            basic command
+                                      basic command
 
             1. to create project - ng new project-name / ng new project-name --routing
 
@@ -17,7 +17,7 @@
 
 
 
-                            Basic Concepts
+                                     Basic Concepts
 
 
             1. Component -to create { html,css,ts file} root component -AppComponent
