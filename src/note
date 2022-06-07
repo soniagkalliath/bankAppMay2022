@@ -65,3 +65,19 @@
                     8.2.1 Reactive Forms - Add Validation: Import ReactiveFormsModule
                             -form group - FormBuilder dependency inject , form array, form control
 
+
+            9. Angular Directives - To manipulate DOM
+
+                9.1 Component Directives
+
+                9.2 Structural Directives - To change DOM structure
+
+                    9.2.1 ngIf - syntanx: *ngIf="condition"
+
+            10. Local Storage - to permanently store data in browser
+
+                10.1 setItem()
+
+                10.2 getItem()
+
+                10.3 removeItem()
